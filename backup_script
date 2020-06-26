@@ -1,0 +1,20 @@
+#!/bin/bash
+
+LOGIN_PATH="/path/to/dir_containing_files/"
+BACKUP_PATH="/path/to/where/to/save/backups/"
+PREVIOUS_DATE=`date -d "yesterday 13:00 " +%d.%m.%Y`
+#PREVIOUS_DATE=`date +%d.%m.%Y`
+FILE=$LOGIN_PATH$PREVIOUS_DATE
+BFILE=$BACKUP_PATH$PREVIOUS_DATE
+
+if test -f "$FILE";then
+	tar -cvzf $PREVIOUS_DATE $LOGIN_PATH$PREVIOUS_DATE
+	echo "done"
+else
+	`touch $BFILE.txt`
+	echo -e  "could not create compress file for $PREVIOUS_DATE/nFile may not exist" >> $BFILE.txt
+fi
+
+mv $PREVIOUS_DATE $BACKUP_PATH
+
+#tar xzvf $PREVIOUS_DATE -C $BACKUP_PATH
