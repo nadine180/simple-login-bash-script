@@ -1,0 +1,15 @@
+#!/bin/bash
+
+LOGIN_PATH="/path/to/dir"
+DATE=`date +%d.%m.%Y`
+TIME=`date +%T`
+FILE=$LOGIN_PATH$DATE
+if test -f "$FILE"; then
+	echo "$FILE exists."
+	echo -e "\n$TIME" >> $FILE 
+else
+#	`touch $FILE`
+	echo "$DATE created."
+	echo -e "\n$TIME" >> $FILE
+fi
+
